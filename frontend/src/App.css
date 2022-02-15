@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto:wght@100;300;400;500;700&family=Work+Sans:wght@300&display=swap");
+
+.app {
+  min-height: 100vh;
+  background-image: url("../public/images/background.png");
+  background-size: cover;
+  background-position: center;
+  color: black;
+}
