@@ -3,6 +3,8 @@ const connectToDB = require("./config/db");
 const { chats } = require("./data/data");
 const dotenv = require("dotenv").config();
 const colors = require("colors");
+const userRoutes = require("./routes/user");
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
 
@@ -12,18 +14,11 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get("/api/chat", (req, res) => {
-  res.send(chats);
-});
+app.use(express.json());
+app.use("/api/user", userRoutes);
 
-app.get("/api/chat/:id", (req, res) => {
-  const singleChat = chats.find((chat) => chat._id === req.params.id);
-  if (!singleChat) {
-    res.status(404).send("The chat with the given ID was not found.");
-  } else {
-    res.send(singleChat);
-  }
-});
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
