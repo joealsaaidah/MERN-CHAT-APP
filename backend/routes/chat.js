@@ -11,8 +11,8 @@ const {
 } = require("../controllers/chat");
 
 router.route("/").post(protect, accessChat).get(protect, getAllChats);
-/*router.route("/group").post(protect, createGroupChat);
-router.route("/rename").put(protect, updateGroupChat);
+router.route("/group").post(protect, createGroupChat);
+/*router.route("/rename").put(protect, updateGroupChat);
 router.route("/grouperemove").put(protect, removeFromGroupChat);
 router.route("/groupeadd").put(protect, addToGroupChat); */
 
