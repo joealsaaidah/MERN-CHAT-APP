@@ -104,4 +104,31 @@ const createGroupChat = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { accessChat, getAllChats, createGroupChat };
+const renameGroupChat = asyncHandler(async (req, res) => {
+  const { chatName, chatId } = req.body;
+  if (!chatName || !chatId) {
+    return res.status(400).send({ message: "Please provide name and chatId" });
+  }
+
+  try {
+    const updatedChat = await Chat.findByIdAndUpdate(
+      { _id: chatId },
+      { chatName },
+      { new: true }
+    )
+      .populate("users", "-password")
+      .populate("groupAdmin", "-password");
+
+    if (!updatedChat) {
+      res.status(400);
+      throw new Error("Chat not found");
+    } else {
+      res.status(200).send(updatedChat);
+    }
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
+});
+
+module.exports = { accessChat, getAllChats, createGroupChat, renameGroupChat };
