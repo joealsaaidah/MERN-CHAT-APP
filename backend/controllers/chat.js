@@ -1,9 +1,3 @@
-//getAllChat,
-//createGroupChat,
-//updateGroupChat,
-//removeFromGroupChat,
-//addToGroupChat,
-
 const asyncHandler = require("express-async-handler");
 const Chat = require("../Models/chat");
 const User = require("../Models/user");
@@ -131,4 +125,69 @@ const renameGroupChat = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { accessChat, getAllChats, createGroupChat, renameGroupChat };
+const addToGroupChat = asyncHandler(async (req, res) => {
+  const { chatId, userId } = req.body;
+  if (!chatId || !userId) {
+    return res
+      .status(400)
+      .send({ message: "Please provide chatId and userId" });
+  }
+
+  try {
+    const added = await Chat.findByIdAndUpdate(
+      { _id: chatId },
+      { $push: { users: userId } },
+      { new: true }
+    )
+      .populate("users", "-password")
+      .populate("groupAdmin", "-password");
+
+    if (!added) {
+      res.status(400);
+      throw new Error("Chat not found");
+    } else {
+      res.status(200).json(added);
+    }
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
+});
+
+const removeFromGroupChat = asyncHandler(async (req, res) => {
+  const { chatId, userId } = req.body;
+  if (!chatId || !userId) {
+    return res
+      .status(400)
+      .send({ message: "Please provide chatId and userId" });
+  }
+
+  try {
+    const removed = await Chat.findByIdAndUpdate(
+      { _id: chatId },
+      { $pull: { users: userId } },
+      { new: true }
+    )
+      .populate("users", "-password")
+      .populate("groupAdmin", "-password");
+
+    if (!removed) {
+      res.status(400);
+      throw new Error("Chat not found");
+    } else {
+      res.status(200).json(removed);
+    }
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
+});
+
+module.exports = {
+  accessChat,
+  getAllChats,
+  createGroupChat,
+  renameGroupChat,
+  addToGroupChat,
+  removeFromGroupChat,
+};

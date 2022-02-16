@@ -13,7 +13,7 @@ const {
 router.route("/").post(protect, accessChat).get(protect, getAllChats);
 router.route("/group").post(protect, createGroupChat);
 router.route("/rename").put(protect, renameGroupChat);
-/*router.route("/grouperemove").put(protect, removeFromGroupChat);
-router.route("/groupeadd").put(protect, addToGroupChat); */
+router.route("/groupremove").put(protect, removeFromGroupChat);
+router.route("/groupadd").put(protect, addToGroupChat);
 
 module.exports = router;
