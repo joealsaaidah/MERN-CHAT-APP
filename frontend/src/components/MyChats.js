@@ -15,7 +15,6 @@ const MyChats = ({ fetchAgain }) => {
   const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState();
 
   const fetchChats = async () => {
-    console.log("here");
     try {
       const config = {
         headers: {
@@ -23,7 +22,6 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
       const { data } = await axios.get("/api/chat", config);
-      console.log("data", data);
       setChats(data);
     } catch (error) {
       toast({
