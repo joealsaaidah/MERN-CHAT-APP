@@ -40,7 +40,7 @@ const io = require("socket.io")(server, {
 io.on("connection", (socket) => {
   console.log("connected to socket.io");
 
-  // oce user connected
+  // once user connected
   socket.on("setup", (userData) => {
     socket.join(userData._id);
     console.log(`${userData.name} joined the chat`);
@@ -64,5 +64,9 @@ io.on("connection", (socket) => {
       if (user._id == newMessageRecieved.sender._id) return;
       socket.in(user._id).emit("message recieved", newMessageRecieved);
     });
+  });
+  socket.off("setup", () => {
+    console.log("USER DISCONNECTED");
+    socket.leave(userData._id);
   });
 });
