@@ -12,7 +12,6 @@ import {
   Drawer,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
   DrawerHeader,
   DrawerBody,
   Input,
@@ -201,7 +200,6 @@ const SideDrawer = () => {
         >
           <DrawerOverlay />
           <DrawerContent>
-            {/* <DrawerCloseButton /> */}
             <DrawerHeader>Search Users</DrawerHeader>
 
             <DrawerBody>

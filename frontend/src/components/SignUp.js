@@ -1,7 +1,6 @@
 import {
   Button,
   FormControl,
-  FormHelperText,
   FormLabel,
   Input,
   InputGroup,
@@ -135,7 +134,6 @@ const SignUp = () => {
       divider={<StackDivider borderColor='gray.200' />}
       spacing='5px'
       color='black'
-      /* align='stretch' */
     >
       <FormControl id='first-name' isRequired>
         <FormLabel>Name</FormLabel>

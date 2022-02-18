@@ -138,13 +138,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
     socket.on("stop typing", () => setIsTyping(false));
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     fetchMessages();
-
     //keep a backup of messages
     selectedChatCompare = selectedChat;
+
+    // eslint-disable-next-line
   }, [selectedChat]);
 
   //socket: resieve a message
