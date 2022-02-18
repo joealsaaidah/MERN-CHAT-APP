@@ -165,8 +165,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     });
   });
 
-  console.log("notification", notification);
-
   return (
     <>
       {selectedChat ? (

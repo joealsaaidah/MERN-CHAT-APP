@@ -21,7 +21,7 @@ import UserListItem from "../UserListItem";
 import UserBadgeItem from "../UserBadgeItem";
 
 const GroupChatModal = ({ children }) => {
-  const [groupChatName, setGroupChatName] = useState("");
+  const [groupChatName, setGroupChatName] = useState();
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
