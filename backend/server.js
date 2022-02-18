@@ -7,20 +7,31 @@ const userRoutes = require("./routes/user");
 const chatRoutes = require("./routes/chat");
 const messageRoutes = require("./routes/message");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+const path = require("path");
 
 const app = express();
 
 connectToDB();
-
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
 
 app.use(express.json());
 
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
+
+/* ---------- Deployment--------- */
+const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("Hello World");
+  });
+}
+/* ---------- Deployment--------- */
 
 app.use(notFound);
 app.use(errorHandler);
