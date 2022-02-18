@@ -97,7 +97,7 @@ const MyChats = ({ fetchAgain }) => {
                 borderRadius='lg'
               >
                 <Text>
-                  {!chat.isGroupChat
+                  {loggedUser && !chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
                 </Text>
