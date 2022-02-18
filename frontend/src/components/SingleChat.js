@@ -57,7 +57,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             Authorization: `Bearer ${user.token}`,
           },
         };
-        //setNewMessage("");
+        setNewMessage("");
         const { data } = await axios.post(
           "/api/message",
           {
@@ -67,7 +67,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           config
         );
 
-        setNewMessage("");
+        //setNewMessage("");
         socket.emit("new message", data);
         setMessages([...messages, data]);
       } catch (error) {
@@ -233,7 +233,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <div>
                   <Lottie
                     options={defaultOptions}
-                    width={70}
+                    width={100}
                     style={{ marginBottom: 15, marginLeft: 0 }}
                   />
                 </div>
