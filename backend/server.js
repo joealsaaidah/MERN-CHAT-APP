@@ -1,5 +1,6 @@
 const express = require("express");
 const connectToDB = require("./config/db");
+var cors = require("cors");
 const { chats } = require("./data/data");
 const dotenv = require("dotenv").config();
 const colors = require("colors");
@@ -14,6 +15,7 @@ const app = express();
 connectToDB();
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
