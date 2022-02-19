@@ -9,11 +9,11 @@ Chukra UI library and Socket.IO.
 
 ### THE LOGIN FORM
 
-![THE LOGIN FORM](./frontend/public/images/ "login form")
+![THE LOGIN FORM](./frontend/public/images/loginform.PNG "login form")
 
 ### THE SIGNUP FORM
 
-![THE SIGNUP FORM](./frontend/public/images/ "signup form")
+![THE SIGNUP FORM](./frontend/public/images/signupform.PNG "signup form")
 
 # LIVE LINK (HEROKU)
 
